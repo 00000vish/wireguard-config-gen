@@ -1,0 +1,18 @@
+{
+  "name": "wireguard-config-gen",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "bootstrap": "^5.3.3",
+    "next": "14.2.14",
+    "react": "^18",
+    "react-dom": "^18"
+  }
+}
