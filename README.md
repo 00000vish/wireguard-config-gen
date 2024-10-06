@@ -16,4 +16,4 @@ Generates WireGuard configs for all the countries provided by the VPN provider.
 
 # Thanks to [gluetun](https://github.com/qdm12/gluetun)
 
-All provider infomation and server info fetched from Gluetun.
+All provider and server data fetched from Gluetun. Thanks <3
