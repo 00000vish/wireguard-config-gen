@@ -98,7 +98,7 @@ export default function Home() {
             </div>
           </div>
           <div className="card-footer text-body-secondary">
-            Data fetched from <a href="https://github.com/qdm12/gluetun-wiki">Gluetun Wiki</a>, Thanks.
+            Data fetched from <a href="https://github.com/qdm12/gluetun">Gluetun</a>, Thanks.
           </div>
         </div>
       </div>
