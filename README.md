@@ -12,7 +12,8 @@ Generates WireGuard configs for all the countries provided by the VPN provider.
 
 ![Screenshot From 2024-10-05 21-38-31](https://github.com/user-attachments/assets/38360bcd-45d6-4b50-afe0-19ef985addaf)
 
-![Screenshot From 2024-10-05 21-29-02](https://github.com/user-attachments/assets/f9605483-f316-42f9-9e3b-4de35823fdc8)
+![Screenshot From 2024-10-05 22-09-46](https://github.com/user-attachments/assets/21a4e333-9337-4963-b7cf-d6390daa45ac)
+
 
 # Thanks to [gluetun](https://github.com/qdm12/gluetun)
 
