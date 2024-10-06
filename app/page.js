@@ -6,14 +6,14 @@ import { useState, useEffect } from 'react'
 export default function Home() {
   const [status, setStatus] = useState("");
   const [providers, setProviders] = useState([]);
-  const [providerName, setProviderName] = useState("");
+  const [selProvider, setSelProvider] = useState("");
+  const [privateKey, setPrivateKey] = useState("");
 
   useEffect(() => {
     async function onLoad() {
-      setStatus("Fetching server info...");
+      setStatus("Fetching providers...");
 
       var providers = await backend.getProviders();
-      console.log(providers);
       setProviders([...providers]);
 
       clearStatus();
@@ -28,28 +28,27 @@ export default function Home() {
 
   function base64ToByteArray(base64String) {
     let binaryString = atob(base64String);
-    
+
     let bytes = new Uint8Array(binaryString.length);
     for (let i = 0; i < binaryString.length; i++) {
       bytes[i] = binaryString.charCodeAt(i);
     }
-    
+
     return bytes.buffer;
   }
 
   async function generateConfig() {
     clearStatus("Generating config...");
 
-    let selectedProvider = providers.find(x => x.name === providerName);
+    let selectedProvider = providers.find(x => x.name === selProvider);
     if (!selectedProvider) {
       setStatus("Please select valid provider");
       return;
     }
 
-    let zipBase64 = await backend.generateConfigs(selectedProvider);
+    let zipBase64 = await backend.generateConfigs(selectedProvider, privateKey);
 
     let zipData = base64ToByteArray(zipBase64);
-
     let blob = new Blob([zipData], { type: 'application/zip' });
     let url = URL.createObjectURL(blob);
 
@@ -70,15 +69,28 @@ export default function Home() {
     <div className="container d-flex col flex-column min-vh-100">
       <div className="flex-grow-1 d-flex justify-content-center align-items-center">
         <div className="card" style={{ width: 500 }}>
-          <h5 className="card-header">Wireguard Config Generator</h5>
+          <h5 className="card-header">WireGuard Config Generator</h5>
           <div className="card-body">
-            <span>Please select provider: </span>
-            <select className="form-select" aria-label="Default select example" onChange={(x) => setProviderName(x.target.value)}>
-              <option defaultValue=""></option>
-              {providers.map(x => (
-                <option key={x.name} value={x.name}>{x.name}</option>
-              ))}
-            </select>
+            {status.length !== 0
+              ? <div className="alert alert-primary" role="alert">
+                {status}
+              </div>
+              : <div />}
+            <div>
+              <span>Please select provider: </span>
+              <select className="form-select" aria-label="Default select example" onChange={(x) => setSelProvider(x.target.value)}>
+                <option defaultValue=""></option>
+                {providers.map(x => (
+                  <option key={x.name} value={x.name}>{x.name}</option>
+                ))}
+              </select>
+            </div>
+            <div className="mt-3">
+              <span>Private key: </span>
+              <div className="input-group flex-nowrap">
+                <input type="text" className="form-control" placeholder="Optional, not required." onChange={(x) => setPrivateKey(x.target.value)} />
+              </div>
+            </div>
             <div className="text-end ">
               <button type="button" className="mt-3 btn btn-outline-success" onClick={generateConfig}>
                 Generate
@@ -86,7 +98,7 @@ export default function Home() {
             </div>
           </div>
           <div className="card-footer text-body-secondary">
-            Configs fetched from <a href="https://github.com/qdm12/gluetun-wiki">Gluetun Wiki</a>, Thanks.
+            Data fetched from <a href="https://github.com/qdm12/gluetun-wiki">Gluetun Wiki</a>, Thanks.
           </div>
         </div>
       </div>

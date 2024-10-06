@@ -1,8 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 
 export const metadata = {
-  title: "Wireguard Config Gen",
-  description: "Wireguard config generator.",
+  title: "WireGuard Config Gen",
+  description: "WireGuard config generator.",
 };
 
 export default function RootLayout({ children }) {
