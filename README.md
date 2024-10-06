@@ -1,6 +1,6 @@
 # WireGuard Config Generator
 
-Generates WireGuard config for all the countries provided by the VPN provider. 
+Generates WireGuard configs for all the countries provided by the VPN provider. 
 
 ## Run
 
