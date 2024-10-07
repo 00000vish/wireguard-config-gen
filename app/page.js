@@ -8,6 +8,8 @@ export default function Home() {
   const [providers, setProviders] = useState([]);
   const [selProvider, setSelProvider] = useState("");
   const [privateKey, setPrivateKey] = useState("");
+  const [address, setAddress] = useState("");
+  const [dns, setDNS] = useState("");
 
   useEffect(() => {
     async function onLoad() {
@@ -46,7 +48,7 @@ export default function Home() {
       return;
     }
 
-    let zipBase64 = await backend.generateConfigs(selectedProvider, privateKey);
+    let zipBase64 = await backend.generateConfigs(selectedProvider, privateKey, address, dns);
 
     let zipData = base64ToByteArray(zipBase64);
     let blob = new Blob([zipData], { type: 'application/zip' });
@@ -86,9 +88,21 @@ export default function Home() {
               </select>
             </div>
             <div className="mt-3">
+              <span>Address: </span>
+              <div className="input-group flex-nowrap">
+                <input type="text" className="form-control" placeholder="x.x.x.x/x" onChange={(x) => setAddress(x.target.value)} />
+              </div>
+            </div>
+            <div className="mt-3">
+              <span>DNS: </span>
+              <div className="input-group flex-nowrap">
+                <input type="text" className="form-control" placeholder="x.x.x.x ( , x.x.x.x )" onChange={(x) => setDNS(x.target.value)} />
+              </div>
+            </div>
+            <div className="mt-3">
               <span>Private key: </span>
               <div className="input-group flex-nowrap">
-                <input type="text" className="form-control" placeholder="Optional, not required." onChange={(x) => setPrivateKey(x.target.value)} />
+                <input type="text" className="form-control" placeholder="" onChange={(x) => setPrivateKey(x.target.value)} />
               </div>
             </div>
             <div className="text-end ">
