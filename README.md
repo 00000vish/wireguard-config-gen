@@ -10,7 +10,7 @@ Generates WireGuard configs for all the countries provided by the VPN provider.
 
 # Screenshots
 
-![Screenshot From 2024-10-07 21-56-10](https://github.com/user-attachments/assets/121a6e4e-3e89-47c8-aa40-53ea25e72d16)
+![Screenshot From 2024-10-08 18-34-51](https://github.com/user-attachments/assets/5b571745-44c1-4878-92d0-7c5343dda8d4)
 
 ![Screenshot From 2024-10-05 22-09-46](https://github.com/user-attachments/assets/21a4e333-9337-4963-b7cf-d6390daa45ac)
 
