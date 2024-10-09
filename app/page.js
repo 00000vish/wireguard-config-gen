@@ -10,6 +10,7 @@ export default function Home() {
   const [privateKey, setPrivateKey] = useState("");
   const [address, setAddress] = useState("");
   const [dns, setDNS] = useState("");
+  const [useHostname, setUseHostname] = useState(false);
 
   useEffect(() => {
     async function onLoad() {
@@ -48,7 +49,13 @@ export default function Home() {
       return;
     }
 
-    let zipBase64 = await backend.generateConfigs(selectedProvider, privateKey, address, dns);
+    let zipBase64 = await backend.generateConfigs(
+      selectedProvider,
+      privateKey, 
+      address, 
+      dns, 
+      useHostname
+    );
 
     let zipData = base64ToByteArray(zipBase64);
     let blob = new Blob([zipData], { type: 'application/zip' });
@@ -103,6 +110,14 @@ export default function Home() {
               <span>Private key: </span>
               <div className="input-group flex-nowrap">
                 <input type="text" className="form-control" placeholder="" onChange={(x) => setPrivateKey(x.target.value)} />
+              </div>
+            </div>
+            <div className="mt-3">
+              <div className="form-check">
+                <input className="form-check-input" type="checkbox" defaultChecked={useHostname.toString()} onChange={(x) => setUseHostname(x.target.value)} />
+                <span className="form-check-label">
+                  Use hostname for endpoint (recommended).
+                </span>
               </div>
             </div>
             <div className="text-end ">
